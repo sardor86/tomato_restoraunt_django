@@ -20,3 +20,7 @@ def about(request: WSGIRequest):
 
 def gallery(request: WSGIRequest):
     return render(request, 'base/pages/gallery.html', context={'page_title': 'Gallery'})
+
+
+def recipie(request: WSGIRequest):
+    return render(request, 'base/pages/recipie.html', context={'page_title': 'Recipe'})
