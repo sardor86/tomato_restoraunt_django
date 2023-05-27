@@ -15,4 +15,8 @@ def reservation(request: WSGIRequest):
 
 
 def about(request: WSGIRequest):
-    return render(request, 'base/pages/about.html', context={'page_title': 'about'})
+    return render(request, 'base/pages/about.html', context={'page_title': 'About'})
+
+
+def gallery(request: WSGIRequest):
+    return render(request, 'base/pages/gallery.html', context={'page_title': 'Gallery'})
