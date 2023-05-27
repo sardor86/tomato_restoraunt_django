@@ -1,0 +1,41 @@
+{% extends 'base/base.html' %}{% load static %}
+{% block body %}
+<section class="page_header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h2 class="text-uppercase">Menu</h2>
+                <p>Tomato is a delicious restaurant website template</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% include 'base/include/menu.html' %}
+
+<!-- subscribe -->
+{% include 'base/include/subscribe.html' %}
+{% endblock body %}
+
+{% block javascript %}
+<script src="{% static 'base/js/vendor/jquery-1.11.2.min.js' %}"></script>
+<script src="{% static 'base/js/vendor/bootstrap.min.js' %}"></script>
+<script src="{% static 'base/js/vendor/jquery.flexslider-min.js' %}"></script>
+<script src="{% static 'base/js/vendor/spectragram.js' %}"></script>
+<script src="{% static 'base/js/vendor/owl.carousel.min.js' %}"></script>
+<script src="{% static 'base/js/vendor/velocity.min.js' %}"></script>
+<script src="{% static 'base/js/vendor/velocity.ui.min.js' %}"></script>
+<script src="{% static 'base/js/vendor/bootstrap-datepicker.min.js' %}"></script>
+<script src="{% static 'base/js/vendor/bootstrap-clockpicker.min.js' %}"></script>
+<script src="{% static 'base/js/vendor/jquery.magnific-popup.min.js' %}"></script>
+<script src="{% static 'base/js/vendor/isotope.pkgd.min.js' %}"></script>
+<script src="{% static 'base/js/vendor/slick.min.js' %}"></script>
+<script src="{% static 'base/js/vendor/wow.min.js' %}"></script>
+<script src="{% static 'base/js/animation.js' %}"></script>
+<script src="{% static 'base/js/vendor/vegas/vegas.min.js' %}"></script>
+<script src="{% static 'base/js/vendor/jquery.mb.YTPlayer.js' %}"></script>
+<script src="{% static 'base/js/vendor/jquery.stellar.js' %}"></script>
+<script src="{% static 'base/js/main.js' %}"></script>
+<script src="{% static 'base/js/vendor/mc/jquery.ketchup.all.min.js' %}"></script>
+<script src="{% static 'base/js/vendor/mc/main.js' %}"></script>
+{% endblock javascript %}

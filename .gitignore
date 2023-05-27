@@ -1,4 +1,7 @@
 venv/
 .idea/
+db.sqlite3
+
 __pycache__/
 tomato_restoraunt/__pycache__
+base/__pycache__/
