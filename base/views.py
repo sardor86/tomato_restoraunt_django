@@ -12,3 +12,7 @@ def menu(request: WSGIRequest):
 
 def reservation(request: WSGIRequest):
     return render(request, 'base/pages/reservation.html', context={'page_title': 'Reservation'})
+
+
+def about(request: WSGIRequest):
+    return render(request, 'base/pages/about.html', context={'page_title': 'about'})
