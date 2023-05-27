@@ -5,3 +5,4 @@ db.sqlite3
 __pycache__/
 tomato_restoraunt/__pycache__
 base/__pycache__/
+base/migrations/__pycache__/

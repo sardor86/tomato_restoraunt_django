@@ -1,4 +1,4 @@
-<section class="footer">
+<section class="footer">{% load static %}
   <div class="container">
     <div class="row">
       <div class="col-md-4 col-sm-12">
@@ -10,14 +10,14 @@
         <h1>Recent post</h1>
         <div class="footer-blog clearfix">
           <a href="./blog_right_sidebar.html">
-            <img src="img/thumb8.png" class="img-responsive footer-photo" alt="blog photos">
+            <img src="{% static 'base/img/thumb8.png' %}" class="img-responsive footer-photo" alt="blog photos">
             <p class="footer-blog-text">Hand picked ingredients for our best customers</p>
             <p class="footer-blog-date">29 may 2015</p>
           </a>
         </div>
         <div class="footer-blog clearfix last">
           <a href="./blog_right_sidebar.html">
-            <img src="img/thumb9.png" class="img-responsive footer-photo" alt="blog photos">
+            <img src="{% static 'base/img/thumb9.png' %}" class="img-responsive footer-photo" alt="blog photos">
             <p class="footer-blog-text">Daily special foods that you will going to love</p>
             <p class="footer-blog-date">29 may 2015</p>
           </a>

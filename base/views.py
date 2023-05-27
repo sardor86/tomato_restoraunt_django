@@ -7,4 +7,8 @@ def home(request: WSGIRequest):
 
 
 def menu(request: WSGIRequest):
-    return render(request, 'base/pages/menu.html')
+    return render(request, 'base/pages/menu.html', context={'page_title': 'Menu'})
+
+
+def reservation(request: WSGIRequest):
+    return render(request, 'base/pages/reservation.html', context={'page_title': 'Reservation'})

@@ -1,15 +1,6 @@
 {% extends 'base/base.html' %}{% load static %}
 {% block body %}
-<section class="page_header">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 text-center">
-                <h2 class="text-uppercase">Menu</h2>
-                <p>Tomato is a delicious restaurant website template</p>
-            </div>
-        </div>
-    </div>
-</section>
+{% include 'base/include/header.html' %}
 
 {% include 'base/include/menu.html' %}
 
