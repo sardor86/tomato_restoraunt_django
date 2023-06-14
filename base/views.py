@@ -24,3 +24,7 @@ def gallery(request: WSGIRequest):
 
 def recipie(request: WSGIRequest):
     return render(request, 'base/pages/recipie.html', context={'page_title': 'Recipe'})
+
+
+def contact(request: WSGIRequest):
+    return render(request, 'base/pages/contact.html', context={'page_title': 'Contact'})
