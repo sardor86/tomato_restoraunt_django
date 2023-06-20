@@ -1,10 +1,13 @@
 from pathlib import Path
+from config import load_config
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+config = load_config(str(BASE_DIR / '.env'))
 
-SECRET_KEY = 'django-insecure-w0$#@cf=d9__u^ows7!e_o5#%1oy7_l60#w@(2jx(my)r@wh1_'
+
+SECRET_KEY = config.django.secret_key
 
 DEBUG = True
 
@@ -54,8 +57,12 @@ WSGI_APPLICATION = 'tomato_restoraunt.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': config.db.database,
+        'USER': config.db.user,
+        'PASSWORD': config.db.password,
+        'HOST': config.db.host,
+        'PORT': config.db.port,
     }
 }
 

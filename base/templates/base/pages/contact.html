@@ -1,0 +1,86 @@
+{% extends 'base/base.html' %}{% load static %}
+{% block body %}
+{% include 'base/include/header.html' %}
+
+<!-- Contact Form / Info -->
+<section class="main-content contact-content">
+    <div class="container">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="row">
+                <div class="col-md-6">
+                    <h3 class="text-left no-margin-top">Address</h3>
+                    <div class="footer-address contact-info">
+                        <p><i class="fa fa-map-marker"></i>28 Seventh Avenue, Neew York, 10014</p>
+                        <p><i class="fa fa-phone"></i>Phone: (415) 124-5678</p>
+                        <p><i class="fa fa-envelope-o"></i>support@restaurant.com</p>
+                    </div>
+                    <br>
+
+                    <h3 class="text-left no-margin-top">Working hours</h3>
+                    <div class="contact-info text-muted">
+                        <p>10:00 am to 11:00 pm on Weekdays</p>
+                        <p>11:00 am to 11:30 pm on Weekends</p>
+                    </div>
+                    <br>
+
+                    <h3 class="text-left no-margin-top">Follow Us</h3>
+                    <div class="contact-social">
+                        <a href="http://www.facebook.com"><i class="fa fa-facebook"></i></a>
+                        <a href="http://www.twitter.com"><i class="fa fa-twitter"></i></a>
+                        <a href="http://www.dribbble.com"><i class="fa fa-dribbble"></i></a>
+                        <a href="http://www.instagram.com"><i class="fa fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <form class="contact-form" id="contactForm" action="php/contact.php" method="post">
+                        <div class="form-group">
+                            <input class="form-control" name="name" id="name" placeholder="Full Name" type="text" required="required" />
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="email" name="email" id="email" placeholder="Email Address" required="required" />
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" placeholder="Subject" type="text" id="subject" name="subject">
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" name="message" id="message" placeholder="Message" rows="5"></textarea>
+                        </div>
+                        <button class="btn btn-default btn-lg btn-block" id="js-contact-btn">Send message</button>
+                    </form>
+                    <div id="js-contact-result" data-success-msg="Form submitted successfully." data-error-msg="Oops. Something went wrong."></div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock body %}
+
+{% block javascript %}
+<!-- Javascript -->
+<script src="{% static 'base/js/vendor/jquery-1.11.2.min.js' %}"></script>
+<script src="{% static 'base/js/vendor/bootstrap.min.js' %}"></script>
+<script src="{% static 'base/js/vendor/jquery.flexslider-min.js' %}"></script>
+<script src="{% static 'base/js/vendor/spectragram.js' %}"></script>
+<script src="{% static 'base/js/vendor/owl.carousel.min.js' %}"></script>
+<script src="{% static 'base/js/vendor/velocity.min.js' %}"></script>
+<script src="{% static 'base/js/vendor/velocity.ui.min.js' %}"></script>
+<script src="{% static 'base/js/vendor/bootstrap-datepicker.min.js' %}"></script>
+<script src="{% static 'base/js/vendor/bootstrap-clockpicker.min.js' %}"></script>
+<script src="{% static 'base/js/vendor/jquery.magnific-popup.min.js' %}"></script>
+<script src="{% static 'base/js/vendor/isotope.pkgd.min.js' %}"></script>
+<script src="{% static 'base/js/vendor/slick.min.js' %}"></script>
+<script src="{% static 'base/js/vendor/wow.min.js' %}"></script>
+<script src="{% static 'base/js/animation.js' %}"></script>
+<script src="{% static 'base/js/vendor/vegas/vegas.min.js' %}"></script>
+<script src="{% static 'base/js/vendor/jquery.mb.YTPlayer.js' %}"></script>
+<script src="{% static 'base/js/vendor/jquery.stellar.js' %}"></script>
+<script src="{% static 'base/js/vendor/mc/jquery.ketchup.all.min.js' %}"></script>
+<script src="{% static 'base/js/vendor/mc/main.js' %}"></script>
+<script src="{% static 'base/https://maps.googleapis.com/maps/api/js?sensor=false' %}"></script>
+<script src="{% static 'base/js/vendor/map.js' %}"></script>
+<script src="{% static 'base/js/vendor/validate.js' %}"></script>
+<script src="{% static 'base/js/contact.js' %}"></script>
+<script src="{% static 'base/js/main.js' %}"></script>
+{% endblock javascript %}

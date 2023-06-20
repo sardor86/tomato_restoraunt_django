@@ -1,6 +1,6 @@
 venv/
 .idea/
-db.sqlite3
+.env
 
 __pycache__/
 tomato_restoraunt/__pycache__
