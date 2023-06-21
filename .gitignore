@@ -2,6 +2,8 @@ venv/
 .idea/
 .env
 
+media
+
 __pycache__/
 tomato_restoraunt/__pycache__
 base/__pycache__/
