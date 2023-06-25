@@ -1,13 +1,29 @@
 from django.shortcuts import render
 from django.core.handlers.wsgi import WSGIRequest
 
+from .models import MenuCategory, MenuMeals, \
+                    OurTeam
+
 
 def home(request: WSGIRequest):
-    return render(request, 'base/pages/index.html')
+    category = MenuCategory.objects.all()
+    meals = MenuMeals.objects.all()
+    today_specials = meals.filter(today_special=True)
+    return render(request,
+                  'base/pages/index.html',
+                  context={'categories': category,
+                           'meals': meals,
+                           'today_specials': today_specials})
 
 
 def menu(request: WSGIRequest):
-    return render(request, 'base/pages/menu.html', context={'page_title': 'Menu'})
+    category = MenuCategory.objects.all()
+    meals = MenuMeals.objects.all()
+    return render(request,
+                  'base/pages/menu.html',
+                  context={'page_title': 'Menu',
+                           'categories': category,
+                           'meals': meals})
 
 
 def reservation(request: WSGIRequest):
@@ -15,7 +31,11 @@ def reservation(request: WSGIRequest):
 
 
 def about(request: WSGIRequest):
-    return render(request, 'base/pages/about.html', context={'page_title': 'About'})
+    our_teams = OurTeam.objects.all()
+    return render(request,
+                  'base/pages/about.html',
+                  context={'page_title': 'About',
+                           'our_teams': our_teams})
 
 
 def gallery(request: WSGIRequest):

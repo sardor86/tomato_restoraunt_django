@@ -73,45 +73,21 @@
             <div class="col-md-offset-1 col-md-10">
                 <div class="flexslider special-slider">
                     <ul class="slides">
-                        <li>
-                            <div class="slider-img">
-                                <img src="{% static 'base/img/thumb4.png' %}" alt="" />
-                            </div>
-                            <div class="slider-content">
-                                <div class="page-header">
-                                    <h1>Pancake with Caramel<small>If you are a fan of caramel cake, then you'll love our Pancake with caramel icecream. It's not thick, but very tasty.</small></h1>
+                        {% for today_special in today_specials %}
+                            <li>
+                                <div class="slider-img">
+                                    <img src="{{ today_special.image.url }}" alt="" />
                                 </div>
-                                <p>Ultrices In massa est, dignissim in libero ac, fringilla ornare mi.Ultrices eget justo. Nam purus lacus, efficitur eget laoreet sed, finibus nec neque. Cras eget enim in diam dapibus sagittis. accumsan, habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
-                                <a class="btn btn-default" href="./index.html" role="button">Order now</a>
-                                <a class="btn btn-secondary" href="./index.html" role="button">Add to cart</a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="slider-img">
-                                <img src="{% static 'base/img/thumb4.png' %}" alt="" />
-                            </div>
-                            <div class="slider-content">
-                                <div class="page-header">
-                                    <h1>Pancake with Caramel<small>If you are a fan of caramel cake, then you'll love our Pancake with caramel icecream. It's not thick, but very tasty.</small></h1>
+                                <div class="slider-content">
+                                    <div class="page-header">
+                                        <h1>{{ today_special.name }}</h1>
+                                    </div>
+                                    <p>{{ today_special.description }}</p>
+                                    <a class="btn btn-default" href="./index.html" role="button">Order now</a>
+                                    <a class="btn btn-secondary" href="./index.html" role="button">Add to cart</a>
                                 </div>
-                                <p>Ultrices In massa est, dignissim in libero ac, fringilla ornare mi.Ultrices eget justo. Nam purus lacus, efficitur eget laoreet sed, finibus nec neque. Cras eget enim in diam dapibus sagittis. accumsan, habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
-                                <a class="btn btn-default" href="./index.html" role="button">Order now</a>
-                                <a class="btn btn-secondary" href="./index.html" role="button">Add to cart</a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="slider-img">
-                                <img src="{% static 'base/img/thumb4.png' %}" alt="" />
-                            </div>
-                            <div class="slider-content">
-                                <div class="page-header">
-                                    <h1>Pancake with Caramel<small>If you are a fan of caramel cake, then you'll love our Pancake with caramel icecream. It's not thick, but very tasty.</small></h1>
-                                </div>
-                                <p>Ultrices In massa est, dignissim in libero ac, fringilla ornare mi.Ultrices eget justo. Nam purus lacus, efficitur eget laoreet sed, finibus nec neque. Cras eget enim in diam dapibus sagittis. accumsan, habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
-                                <a class="btn btn-default" href="./index.html" role="button">Order now</a>
-                                <a class="btn btn-secondary" href="./index.html" role="button">Add to cart</a>
-                            </div>
-                        </li>
+                            </li>
+                        {% endfor %}
                     </ul>
                     <div class="direction-nav hidden-sm">
                         <div class="next">
