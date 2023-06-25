@@ -3,3 +3,4 @@ environs~=9.5.0
 django-debug-toolbar~=4.1.0
 Pillow~=9.5.0
 psycopg~=3.1.9
+django-jazzmin~=2.6.0
