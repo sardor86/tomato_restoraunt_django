@@ -2,7 +2,7 @@ from django.contrib.admin import TabularInline
 from django.contrib.auth.models import Group
 
 from .models import MenuCategory, MenuMeals, \
-                    OurTeam
+                    OurTeam, Gallery
 
 from django.contrib import admin
 
@@ -38,8 +38,17 @@ class MenuCategoryAdmin(admin.ModelAdmin):
 @admin.register(OurTeam)
 class OurTeamAdmin(admin.ModelAdmin):
     list_display = ['id', 'name']
-    list_display_links = ['id']
+    list_display_links = ['id', 'name']
     search_fields = ['name']
+
+    search_help_text = 'search by name'
+
+
+@admin.register(Gallery)
+class GalleryAdmin(admin.ModelAdmin):
+    list_display = ['id', 'image']
+    list_display_links = ['id']
+    list_editable = ['image']
 
 
 admin.site.unregister(Group)

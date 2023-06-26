@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.core.handlers.wsgi import WSGIRequest
 
 from .models import MenuCategory, MenuMeals, \
-                    OurTeam
+                    OurTeam, Gallery
 
 
 def home(request: WSGIRequest):
@@ -32,14 +32,23 @@ def reservation(request: WSGIRequest):
 
 def about(request: WSGIRequest):
     our_teams = OurTeam.objects.all()
+    category = MenuCategory.objects.all()
+    meals = MenuMeals.objects.all()
     return render(request,
                   'base/pages/about.html',
                   context={'page_title': 'About',
-                           'our_teams': our_teams})
+                           'our_teams': our_teams,
+                           'categories': category,
+                           'meals': meals})
 
 
 def gallery(request: WSGIRequest):
-    return render(request, 'base/pages/gallery.html', context={'page_title': 'Gallery'})
+    photos = Gallery.objects.all()
+
+    return render(request,
+                  'base/pages/gallery.html',
+                  context={'page_title': 'Gallery',
+                           'gallery': photos})
 
 
 def recipie(request: WSGIRequest):

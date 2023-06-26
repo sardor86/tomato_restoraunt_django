@@ -2,6 +2,18 @@ from django.db import models
 import datetime
 
 
+def wrapper_menu_meals(instance, filename: str):
+    return str(datetime.datetime.now().strftime(f'menu/%Y-%m-%d/%H-%M-%S.{filename.split(".")[-1]}'))
+
+
+def wrapper_our_teams(instance, filename: str):
+    return str(datetime.datetime.now().strftime(f'our_teams/%Y-%m-%d/%H-%M-%S.{filename.split(".")[-1]}'))
+
+
+def wrapper_gallery(instance, filename: str):
+    return str(datetime.datetime.now().strftime(f'gallery/%Y-%m-%d/%H-%M-%S.{filename.split(".")[-1]}'))
+
+
 class MenuCategory(models.Model):
     name = models.CharField('name',
                             max_length=50,
@@ -17,14 +29,6 @@ class MenuCategory(models.Model):
 
     def __repr__(self) -> str:
         return f'MenuCategory: {self.name}'
-
-
-def wrapper_menu_meals(instance, filename: str):
-    return str(datetime.datetime.now().strftime(f'menu/%Y-%m-%d/%H-%M-%S.{filename.split(".")[-1]}'))
-
-
-def wrapper_our_teams(instance, filename: str):
-    return str(datetime.datetime.now().strftime(f'our_teams/%Y-%m-%d/%H-%M-%S.{filename.split(".")[-1]}'))
 
 
 class MenuMeals(models.Model):
@@ -76,3 +80,31 @@ class OurTeam(models.Model):
     google_url = models.URLField('google',
                                  default='https://none.com/',
                                  help_text='Write the Google+ URL for your worker')
+
+    class Meta:
+        db_table = 'our_team'
+        verbose_name = 'worker'
+        verbose_name_plural = 'team'
+
+    def __str__(self) -> str:
+        return str(self.name)
+
+    def __repr__(self) -> str:
+        return f'Worker: {self.name}'
+
+
+class Gallery(models.Model):
+    image = models.ImageField('image',
+                              upload_to=wrapper_gallery,
+                              help_text='Choice photo')
+
+    class Meta:
+        db_table = 'gallery'
+        verbose_name = 'photo'
+        verbose_name_plural = 'gallery'
+
+    def __str__(self) -> str:
+        return str(self.image)
+
+    def __repr__(self) -> str:
+        return f'Photo: {self.image}'
