@@ -26,10 +26,6 @@ def menu(request: WSGIRequest):
                            'meals': meals})
 
 
-def reservation(request: WSGIRequest):
-    return render(request, 'base/pages/reservation.html', context={'page_title': 'Reservation'})
-
-
 def about(request: WSGIRequest):
     our_teams = OurTeam.objects.all()
     category = MenuCategory.objects.all()
@@ -49,10 +45,6 @@ def gallery(request: WSGIRequest):
                   'base/pages/gallery.html',
                   context={'page_title': 'Gallery',
                            'gallery': photos})
-
-
-def recipie(request: WSGIRequest):
-    return render(request, 'base/pages/recipie.html', context={'page_title': 'Recipe'})
 
 
 def contact(request: WSGIRequest):

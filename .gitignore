@@ -8,3 +8,5 @@ __pycache__/
 tomato_restoraunt/__pycache__
 base/__pycache__/
 base/migrations/__pycache__/
+user/__pycache__/
+user/migrations/__pycache__/
