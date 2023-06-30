@@ -28,7 +28,7 @@ def login(request: WSGIRequest):
         except Exception:
             return request_error(request, 'Password or Email is invalid', form, 'login')
 
-        if user.password == form['password']:
+        if Users.objects.verify(user.email, form['password']):
             return render(request,
                           'user/pages/success.html',
                           context={'success_text': 'successfully login'})

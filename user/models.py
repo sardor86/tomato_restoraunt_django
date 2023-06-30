@@ -1,4 +1,21 @@
 from django.db import models
+from argon2 import PasswordHasher
+from argon2.exceptions import VerificationError
+
+
+class UsersManager(models.Manager):
+    def create_user(self, email: str, password: str):
+        return self.create(email=email,
+                           password=PasswordHasher().hash(password))
+
+    def verify(self, email: str, password: str):
+        try:
+            try:
+                return PasswordHasher().verify(self.get(email=email).password, password)
+            except VerificationError:
+                return False
+        except Exception:
+            return None
 
 
 class Users(models.Model):
@@ -6,8 +23,10 @@ class Users(models.Model):
                               unique=True,
                               help_text='user`s email')
     password = models.CharField('password',
-                                max_length=50,
+                                max_length=150,
                                 help_text='user`s password')
+
+    objects = UsersManager()
 
     class Meta:
         db_table = 'users'
