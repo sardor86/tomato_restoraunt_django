@@ -1,0 +1,78 @@
+<nav class="navbar navbar-fixed-top">{% load static %}
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="./index.html">
+                <img src="{% static 'base/img/nav-logo.png' %}" alt="nav-logo">
+            </a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="{% url 'home' %}" class="dropdown-toggle">Home</a>
+                </li>
+                <li class="dropdown">
+                    <a href="{% url 'menu' %}" class="dropdown-toggle">Menu</a>
+                </li>
+                <li class="dropdown">
+                    <a href="" class="dropdown-toggle">Reservation</a>
+                </li>
+                <li class="dropdown">
+                    <a href="{% url 'about' %}" class="dropdown-toggle">About</a>
+                </li>
+                <li class="dropdown">
+                    <a href="{% url 'gallery' %}" class="dropdown-toggle">Gallery</a>
+                </li>
+                <li class="dropdown">
+                    <a href="" class="dropdown-toggle">Recipe</a>
+                </li>
+                <li class="dropdown">
+                    <a href="./shop_fullwidth.html" class="dropdown-toggle">Shop</a>
+                </li>
+                <li><a href="{% url 'contact' %}">Contact</a></li>
+                <li class="dropdown">
+                    <a class="css-pointer dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-shopping-cart fsc pull-left"></i><span class="cart-number">3</span><span class="caret"></span></a>
+                    <div class="cart-content dropdown-menu">
+                        <div class="cart-title">
+                            <h4>Shopping Cart</h4>
+                        </div>
+                        <div class="cart-items">
+                            <div class="cart-item clearfix">
+                                <div class="cart-item-image">
+                                    <a href="./shop_single_full.html"><img src="{% static 'base/img/cart-img1.jpg' %}" alt="Breakfast with coffee"></a>
+                                </div>
+                                <div class="cart-item-desc">
+                                    <a href="./shop_single_full.html">Breakfast with coffee</a>
+                                    <span class="cart-item-price">$19.99</span>
+                                    <span class="cart-item-quantity">x 2</span>
+                                    <i class="fa fa-times ci-close"></i>
+                                </div>
+                            </div>
+                            <div class="cart-item clearfix">
+                                <div class="cart-item-image">
+                                    <a href="./shop_single_full.html"><img src="{% static 'base/img/cart-img2.jpg' %}" alt="Chicken stew"></a>
+                                </div>
+                                <div class="cart-item-desc">
+                                    <a href="./shop_single_full.html">Chicken stew</a>
+                                    <span class="cart-item-price">$24.99</span>
+                                    <span class="cart-item-quantity">x 3</span>
+                                    <i class="fa fa-times ci-close"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cart-action clearfix">
+                            <span class="pull-left checkout-price">$ 114.95</span>
+                            <a class="btn btn-default pull-right" href="./shop_cart.html">View Cart</a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <!--/.navbar-collapse -->
+    </div>
+</nav>
