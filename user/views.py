@@ -6,13 +6,7 @@ from random import choice
 import datetime
 
 from tomato_restoraunt.settings import EMAIL_HOST_YA, EMAIL_PORT_YA, EMAIL_HOST_USER_YA, EMAIL_HOST_PASSWORD_YA
-from .models import Users, TempUser
-
-
-def account(request: WSGIRequest):
-    return render(request,
-                  'user/pages/account.html',
-                  context={'page_title': 'Account'})
+from .models import Users, TempUser, UsersCookies
 
 
 def request_error(request: WSGIRequest, error_text: str, form: dict, type_request: str):
@@ -23,6 +17,16 @@ def request_error(request: WSGIRequest, error_text: str, form: dict, type_reques
                            'email': form['email'],
                            'password': form['password'],
                            'type_request': type_request})
+
+
+def generate_unique_code(length) -> str:
+    return ''.join([choice('qwertyuiopasdfghjklzxcvbnm1234567890') for _ in range(length)])
+
+
+def account(request: WSGIRequest):
+    return render(request,
+                  'user/pages/account.html',
+                  context={'page_title': 'Account'})
 
 
 def login(request: WSGIRequest):
@@ -38,9 +42,13 @@ def login(request: WSGIRequest):
             return request_error(request, 'Password or Email is invalid', form, 'login')
 
         if Users.objects.verify(user.email, form['password']):
-            return render(request,
-                          'user/pages/success.html',
-                          context={'success_text': 'successfully login'})
+            response = render(request,
+                              'user/pages/success.html',
+                              context={'success_text': 'successfully login'})
+            if form['remember_me']:
+                response.set_cookie('user', UsersCookies.objects.get(user=user).unique_code)
+
+            return response
         else:
             return request_error(request, 'Password or Email is invalid', form, 'login')
 
@@ -61,10 +69,17 @@ def registration(request: WSGIRequest):
             return request_error(request, 'This Email was created', form, 'registration')
 
         except Exception:
+            try:
+                while True:
+                    unique_code = generate_unique_code(30)
+                    TempUser.objects.get(unique_code=unique_code)
+                    UsersCookies.objects.get(unique_code=unique_code)
+            except Exception:
+                pass
+
             temp_user = TempUser(email=form['email'],
                                  password=form['password'],
-                                 unique_code=''.join([choice('qwertyuiopasdfghjklzxcvbnm1234567890')
-                                                      for _ in range(30)]))
+                                 unique_code=unique_code)
             try:
                 temp_user.save()
 
@@ -73,9 +88,10 @@ def registration(request: WSGIRequest):
 
                 time = datetime.datetime.now(datetime.timezone.utc).minute - temp_user.time.minute
                 if time <= 5:
-                    temp_user.unique_code = ''.join([choice('qwertyuiopasdfghjklzxcvbnm1234567890') for _ in range(30)])
+                    while True:
+                        temp_user.unique_code = unique_code
+                        temp_user.save()
 
-                    temp_user.save()
                 else:
                     return request_error(request,
                                          f'You can send email after {5 - time} minutes',
@@ -109,13 +125,18 @@ def registration(request: WSGIRequest):
         try:
             temp_user = TempUser.objects.get(unique_code=unique_code)
 
-            Users.objects.create_user(email=temp_user.email,
-                                      password=temp_user.password)
+            user = Users.objects.create_user(email=temp_user.email,
+                                             password=temp_user.password)
             temp_user.delete()
 
-            return render(request,
-                          'user/pages/success.html',
-                          context={'success_text': 'Your account is created'})
+            response = render(request,
+                              'user/pages/success.html',
+                              context={'success_text': 'Your account is created'})
+            UsersCookies(user=user,
+                         unique_code=unique_code).save()
+            response.set_cookie('user', unique_code)
+
+            return response
         except Exception:
             return render(request,
                           'pages/page404.html')

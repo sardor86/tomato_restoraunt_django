@@ -47,7 +47,9 @@ class TempUser(models.Model):
     password = models.CharField('password',
                                 help_text='user`s password')
     unique_code = models.CharField('unique_code',
-                                   help_text='user`s unique code')
+                                   max_length=30,
+                                   help_text='user`s unique code',
+                                   unique=True)
     time = models.TimeField('time',
                             auto_now=True)
 
@@ -61,3 +63,22 @@ class TempUser(models.Model):
 
     def __repr__(self) -> str:
         return f'User: email={self.email}'
+
+
+class UsersCookies(models.Model):
+    user = models.ForeignKey(Users,
+                             name='user',
+                             on_delete=models.CASCADE)
+    unique_code = models.TextField(max_length=30,
+                                   unique=True)
+
+    class Meta:
+        db_table = 'cookie_user'
+        verbose_name = 'cookie'
+        verbose_name_plural = 'cookies'
+
+    def __str__(self) -> str:
+        return str(self.unique_code)
+
+    def __repr__(self) -> str:
+        return f'Cookie: unique_code={self.unique_code}'
