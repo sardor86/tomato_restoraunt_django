@@ -38,3 +38,26 @@ class Users(models.Model):
 
     def __repr__(self) -> str:
         return f'User: email={self.email}'
+
+
+class TempUser(models.Model):
+    email = models.EmailField('email',
+                              unique=True,
+                              help_text='user`s email')
+    password = models.CharField('password',
+                                help_text='user`s password')
+    unique_code = models.CharField('unique_code',
+                                   help_text='user`s unique code')
+    time = models.TimeField('time',
+                            auto_now=True)
+
+    class Meta:
+        db_table = 'temp_user'
+        verbose_name = 'temp user'
+        verbose_name_plural = 'temp users'
+
+    def __str__(self) -> str:
+        return str(self.email)
+
+    def __repr__(self) -> str:
+        return f'User: email={self.email}'

@@ -17,9 +17,16 @@ class Django:
 
 
 @dataclass
+class Email:
+    email: str
+    password: str
+
+
+@dataclass
 class Config:
     db: DataBase
     django: Django
+    email: Email
 
 
 def load_config(path: str) -> Config:
@@ -36,5 +43,9 @@ def load_config(path: str) -> Config:
         ),
         django=Django(
             secret_key=env.str('SECRET_KET')
+        ),
+        email=Email(
+            email=env.str('MAIL'),
+            password=env.str('MAIL_PASSWORD')
         )
     )

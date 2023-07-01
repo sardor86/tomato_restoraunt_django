@@ -232,3 +232,8 @@ JAZZMIN_UI_TWEAKS = {
         'success': 'btn-success'
     }
 }
+
+EMAIL_HOST_YA = 'smtp.yandex.ru'
+EMAIL_PORT_YA = 587
+EMAIL_HOST_USER_YA = config.email.email
+EMAIL_HOST_PASSWORD_YA = config.email.password
